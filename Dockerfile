@@ -1,5 +1,5 @@
 FROM golang:1.15-alpine AS builder
-
+RUN apk --update add ca-certificates
 RUN apk add --no-cache git
 
 WORKDIR $GOPATH/src/github.com/aaomidi/no-biden-or-trump/
@@ -16,6 +16,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /bot main
 
 FROM scratch
 
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /bot /bot
 
 ENTRYPOINT ["/bot"]

@@ -22,7 +22,7 @@ jobs:
         run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/no-biden-or-trump
 
       - name: Push latest image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/uselections-2020:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/no-biden-or-trump:latest
 
       - name: Tag image
         run: docker tag ${{ secrets.DOCKER_USERNAME }}/no-biden-or-trump:latest ${{ secrets.DOCKER_USERNAME }}/no-biden-or-trump:${GITHUB_REF#refs/*/}

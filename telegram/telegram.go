@@ -44,7 +44,6 @@ func (t *Telegram) Start() {
 func (t *Telegram) onText(m *tb.Message) {
 	msg := strings.ToLower(m.Text)
 
-	t.log.Infof("Chat: %s %s: %s", m.Chat.Username, m.Chat.Title, m.Text)
 	if !strings.Contains(msg, "trump") && !strings.Contains(msg, "biden") {
 		return
 	}
